@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens                                                          */
+/* ---------------------------------------------------------------------- */
+@theme {
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0d0d0d;
+  --color-ink-soft: #171717;
+  --color-paper: #ececeb;
+  --color-paper-dim: #dcdcda;
+  --color-cloud: #f6f6f5;
+  --color-white: #ffffff;
+  --color-line: #0d0d0d;
+  --color-muted: #6b6b68;
+  --color-muted-dark: #9a9a97;
+
+  --shadow-flat: 0 1px 0 0 rgba(13, 13, 13, 0.08);
+
+  --animate-marquee: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Base resets                                                            */
+/* ---------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  /* Dark sections need a light focus ring, handled via .on-dark */
+  .on-dark :focus-visible {
+    outline-color: var(--color-cloud);
+  }
+}
+
+/* Dual-mode contact form inputs: explicitly guarantee no focus
+   border/outline can appear here, independent of the sitewide
+   accessible focus ring above (kept everywhere else on the site). */
+.contact-input:focus,
+.contact-input:focus-visible {
+  outline: none;
+}
+
+/* Dual-mode contact form switch: driven directly by aria-pressed so the
+   active/inactive visual state can never drift from the underlying mode
+   state. Written as plain CSS (not Tailwind utility classes) because the
+   shared `button { background: none; border: none; }` reset below is
+   plain unlayered CSS, and Tailwind v4 puts utility classes in
+   @layer utilities - unlayered CSS always wins over layered CSS
+   regardless of specificity, so bg-ink/bg-white/text-paper/text-ink
+   utility classes on a <button> were being silently discarded. Styling
+   only these two buttons directly (rather than moving the shared reset
+   into a layer) keeps the fix scoped to the contact form only. */
+.contact-mode-btn {
+  background-color: var(--color-white);
+  color: var(--color-ink);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.contact-mode-btn[aria-pressed='false']:hover {
+  background-color: var(--color-paper);
+}
+
+.contact-mode-btn[aria-pressed='true'] {
+  background-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+/* BracketButton's two color variants - see the comment in BracketButton.tsx
+   for why this can't be a text-ink/text-cloud Tailwind class on a <button>. */
+.bracket-btn-light {
+  color: var(--color-ink);
+}
+
+.bracket-btn-dark {
+  color: var(--color-cloud);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Custom scrollbar                                                       */
+/* ---------------------------------------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink) var(--color-paper-dim);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-paper-dim);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-ink);
+  border-radius: 999px;
+  border: 2px solid var(--color-paper-dim);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--color-paper-dim);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Custom form controls (no browser defaults)                             */
+/* ---------------------------------------------------------------------- */
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  color: inherit;
+}
+
+input,
+textarea {
+  appearance: none;
+  background: transparent;
+  border-radius: 0;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-ink);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+button {
+  appearance: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Shared decorative primitives                                           */
+/* ---------------------------------------------------------------------- */
+.divider-stitch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-ink);
+}
+
+.divider-stitch::before,
+.divider-stitch::after {
+  content: "";
+  height: 1px;
+  width: 2.5rem;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.on-dark .divider-stitch {
+  color: var(--color-cloud);
+}
