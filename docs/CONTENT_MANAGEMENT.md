@@ -79,22 +79,43 @@ order - put your most relevant entry first.
 **The Testimonials section only renders entries with non-empty `quote`
 text**, and the whole section disappears if none qualify. This is
 intentional - placeholder/fake testimonial content was explicitly ruled
-out. As soon as you fill in a `quote`, that entry (and the section, if it
-was the first one) appears automatically. No component changes needed.
+out. All four entries currently in the file have real, confirmed quotes.
+To stage a new one before its text is ready, add an entry with
+`quote: ''`; it (and the section, if it's the first entry) appears
+automatically the moment a real quote is filled in. No component changes
+needed.
 
 ## Contact form - `data/contact.ts`
 
-`formspreeEndpoint` is intentionally empty. To go live:
+The contact form has two modes, switched with a segmented control above the
+fields (defaults to Email). Both modes share the same `name`/`message`
+values when you switch between them, so nothing typed is lost.
+
+**Email mode** shows Full Name, Email, and Message, and submits via
+Formspree (see below).
+
+**WhatsApp mode** shows Full Name, WhatsApp Number, and Message. On submit,
+it opens `https://wa.me/<number>` in a new tab, pre-filled with a message
+built from the visitor's own input. The destination number is
+`personal.phone` in `data/personal.ts` - there's no separate WhatsApp
+number to configure. The message template and the digit-only formatting
+required by `wa.me` live in `src/lib/whatsapp.ts`; the per-mode required-field
+validation lives in `src/lib/validation.ts`.
+
+`fields` in `contact.ts` defines the label/placeholder/type for all four
+possible inputs (`name`, `email`, `phone`, `message`); `ContactForm.tsx`
+picks which three are shown based on the active mode.
+
+`formspreeEndpoint` is intentionally empty. To go live with Email mode:
 
 1. Create a form at [formspree.io](https://formspree.io) and copy its
    endpoint URL (`https://formspree.io/f/xxxxxxx`).
 2. Paste it into `formspreeEndpoint` in `data/contact.ts`.
 
-Until it's set, submitting the form runs full validation but shows an
+Until it's set, submitting in Email mode runs full validation but shows an
 informational toast instead of sending anything - see
-`src/components/Contact/ContactForm.tsx`. `fields` drives which inputs
-render and their placeholders/`required` state; reordering or editing that
-array changes the form without touching `ContactForm.tsx`.
+`src/components/Contact/ContactForm.tsx`. WhatsApp mode doesn't depend on
+this endpoint and works as soon as `personal.phone` is a real number.
 
 ## Resume
 
@@ -102,3 +123,15 @@ Replace `public/assets/resume/Zaheer-Abbas-Resume.pdf` with a new file of the **
 name** to update the downloadable resume without touching any code. If you
 rename the file, update `personal.resumeUrl` in `data/personal.ts` to
 match.
+
+## Favicon, manifest, robots.txt, sitemap.xml
+
+- **Favicons** live in `public/favicons/` (an SVG plus 16/32/180/192/512px
+  PNGs) and are referenced from `index.html`'s `<link>` tags. Replace the
+  files in place, keeping the same names, to swap the icon.
+- **`public/site.webmanifest`** points at the 192px/512px icons in that same
+  folder and sets the app name/theme colors for "add to home screen".
+- **`public/robots.txt`** and **`public/sitemap.xml`** both reference
+  `https://zaheerabbas.dev/`. Update both (and the canonical/Open Graph tags
+  in `index.html`) if the site moves to a different domain - see
+  `docs/DEPLOYMENT.md`.

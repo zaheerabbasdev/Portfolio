@@ -16,14 +16,18 @@ src/
 ├── components/
 │   ├── ui/             Shared primitives: SectionHeading, Divider,
 │   │                    BracketButton, PillButton, SocialLinks, Container
-│   ├── Header/          Desktop nav + mobile slide-in panel + logo
+│   ├── Header/          Fancy header (in the hero) + persistent scroll
+│   │                    header, sharing one HeaderBarContent; mobile
+│   │                    slide-in panel; logo
 │   ├── Hero/            Diagonal split hero
-│   ├── About/           About Me section
+│   ├── About/           About Me section, plus the black "How I Work" intro
+│   │                    band above it
 │   ├── Skills/          Category → skill-name lists
 │   ├── Experience/      Scroll-animated timeline
 │   ├── Projects/        Horizontal carousel + card
 │   ├── Testimonials/    Single-item rotating carousel
-│   ├── Contact/         Form, validation wiring, toast notifications
+│   ├── Contact/         Dual-mode (Email/WhatsApp) form, validation wiring,
+│   │                    toast notifications
 │   └── Footer/
 ├── data/                Content - the only files you edit to update copy
 ├── hooks/                useScrollReveal, useMediaQuery, useLockBodyScroll,
@@ -51,6 +55,12 @@ number of items. Concretely:
   correctly whether there's 1 project or 14.
 - **Testimonials** filters `testimonials.ts` down to entries with non-empty
   `quote` text at render time, and renders nothing if none qualify yet.
+- **Header** logic is split from its markup: `HeaderBarContent.tsx` renders
+  the logo, nav links, and Contact button once, and both `Header.tsx` (the
+  fancy header inside the hero, never fixed) and `StickyHeader.tsx` (the
+  persistent bar that slides in once the user has scrolled past ~50% of the
+  hero) render it with different positioning/colors, so the two can never
+  drift out of sync with each other's content.
 
 See `docs/CONTENT_MANAGEMENT.md` for the practical "how do I add one more X"
 walkthrough.

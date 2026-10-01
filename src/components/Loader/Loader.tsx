@@ -80,7 +80,6 @@ export function Loader({ onComplete }: LoaderProps) {
           <span key={index} className="loader-square h-2.5 w-2.5 bg-paper" />
         ))}
       </div>
-      <span className="font-display text-xs font-semibold tracking-[0.4em] text-muted-dark">ZAHEER ABBAS</span>
     </div>
   )
 }

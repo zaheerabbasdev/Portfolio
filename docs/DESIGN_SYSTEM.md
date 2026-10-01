@@ -46,11 +46,16 @@ there's a clear hierarchy between display and body text.
 - **Divider** - the small stitched zig-zag rule between the boxed heading
   and section body.
 - **BracketButton** - the `| EXPLORE |` / `| SUBMIT |` text button with
-  vertical hairline brackets.
-- **PillButton** - the rounded black/white CTA used for "Contact me" (nav)
-  and "Resume" (mobile nav).
+  vertical hairline brackets. Also used for the hero's "Resume" link and
+  the About intro band's "Read More", via its `as="a"` mode.
+- **PillButton** - a sharp-cornered (not rounded) black/white CTA, currently
+  used only for the "Contact me" button in the header.
 - **SocialLinks** - square icon buttons (Font Awesome), with a `dark`
   variant for black backgrounds and a `light` variant for paper backgrounds.
+- **Logo** - the "ZA" monogram (see `public/favicons/favicon.svg`), rendered
+  inline as SVG paths with `currentColor` so it adapts to light/dark
+  contexts. Displayed at 55×55px everywhere it appears: the fancy header,
+  the persistent scroll header, and the mobile nav drawer.
 
 ## Layout
 

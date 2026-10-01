@@ -46,6 +46,9 @@ None are required for a basic deployment. The only build-time variable is
 ## Custom domain
 
 All three platforms support attaching a custom domain from their
-dashboards; no code changes are needed. If you do add one, update the
-`<link rel="canonical">` and Open Graph `og:url` tags in `index.html` to
-match.
+dashboards; no code changes are needed for that step itself. The project
+already references `https://zaheerabbas.dev/` as its canonical domain in
+`index.html` (`<link rel="canonical">`, Open Graph `og:url`), `public/robots.txt`,
+and `public/sitemap.xml`. If you deploy to a different domain, update all
+four of those to match - otherwise search engines and social previews will
+point at the wrong URL.
