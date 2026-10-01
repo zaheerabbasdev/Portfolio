@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
-/* ---------------------------------------------------------------------- */
-/* Design tokens                                                          */
-/* ---------------------------------------------------------------------- */
+/* ------------------------------------ */
+/*            Design tokens             */
+/* ------------------------------------ */
 @theme {
-  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-ink: #0d0d0d;
@@ -31,9 +32,9 @@
   }
 }
 
-/* ---------------------------------------------------------------------- */
-/* Base resets                                                            */
-/* ---------------------------------------------------------------------- */
+/* ------------------------------------ */
+/*            Base resets               */
+/* ------------------------------------ */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
@@ -73,30 +74,16 @@ body {
     outline-offset: 3px;
   }
 
-  /* Dark sections need a light focus ring, handled via .on-dark */
   .on-dark :focus-visible {
     outline-color: var(--color-cloud);
   }
 }
 
-/* Dual-mode contact form inputs: explicitly guarantee no focus
-   border/outline can appear here, independent of the sitewide
-   accessible focus ring above (kept everywhere else on the site). */
 .contact-input:focus,
 .contact-input:focus-visible {
   outline: none;
 }
 
-/* Dual-mode contact form switch: driven directly by aria-pressed so the
-   active/inactive visual state can never drift from the underlying mode
-   state. Written as plain CSS (not Tailwind utility classes) because the
-   shared `button { background: none; border: none; }` reset below is
-   plain unlayered CSS, and Tailwind v4 puts utility classes in
-   @layer utilities - unlayered CSS always wins over layered CSS
-   regardless of specificity, so bg-ink/bg-white/text-paper/text-ink
-   utility classes on a <button> were being silently discarded. Styling
-   only these two buttons directly (rather than moving the shared reset
-   into a layer) keeps the fix scoped to the contact form only. */
 .contact-mode-btn {
   background-color: var(--color-white);
   color: var(--color-ink);
@@ -105,17 +92,15 @@ body {
     color 150ms ease;
 }
 
-.contact-mode-btn[aria-pressed='false']:hover {
+.contact-mode-btn[aria-pressed="false"]:hover {
   background-color: var(--color-paper);
 }
 
-.contact-mode-btn[aria-pressed='true'] {
+.contact-mode-btn[aria-pressed="true"] {
   background-color: var(--color-ink);
   color: var(--color-white);
 }
 
-/* BracketButton's two color variants - see the comment in BracketButton.tsx
-   for why this can't be a text-ink/text-cloud Tailwind class on a <button>. */
 .bracket-btn-light {
   color: var(--color-ink);
 }
@@ -124,9 +109,9 @@ body {
   color: var(--color-cloud);
 }
 
-/* ---------------------------------------------------------------------- */
-/* Custom scrollbar                                                       */
-/* ---------------------------------------------------------------------- */
+/* ------------------------------------ */
+/*            Custom scrollbar          */
+/* ------------------------------------ */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-ink) var(--color-paper-dim);
@@ -151,9 +136,9 @@ body {
   background: var(--color-paper-dim);
 }
 
-/* ---------------------------------------------------------------------- */
-/* Custom form controls (no browser defaults)                             */
-/* ---------------------------------------------------------------------- */
+/* ------------------------------------ */
+/*        Custom form controls          */
+/* ------------------------------------ */
 input,
 textarea,
 button,
@@ -182,9 +167,9 @@ button {
   border: none;
 }
 
-/* ---------------------------------------------------------------------- */
-/* Shared decorative primitives                                           */
-/* ---------------------------------------------------------------------- */
+/* ------------------------------------ */
+/*      Shared decorative primitives    */
+/* ------------------------------------ */
 .divider-stitch {
   display: flex;
   align-items: center;

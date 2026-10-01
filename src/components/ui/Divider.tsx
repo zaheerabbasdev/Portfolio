@@ -1,4 +1,4 @@
-export function Divider({ className = '' }: { className?: string }) {
+export function Divider({ className = "" }: { className?: string }) {
   return (
     <div className={`divider-stitch ${className}`} aria-hidden="true">
       <svg width="28" height="10" viewBox="0 0 28 10" fill="none">
@@ -11,5 +11,5 @@ export function Divider({ className = '' }: { className?: string }) {
         />
       </svg>
     </div>
-  )
+  );
 }

@@ -1,5 +1,3 @@
-// "ZA" monogram from the supplied brand/favicon set (see public/favicons/favicon.svg).
-// Color is controlled by the parent via `currentColor` (text-* utility).
 export function Logo({ tabIndex }: { tabIndex?: number }) {
   return (
     <a
@@ -17,5 +15,5 @@ export function Logo({ tabIndex }: { tabIndex?: number }) {
         </g>
       </svg>
     </a>
-  )
+  );
 }

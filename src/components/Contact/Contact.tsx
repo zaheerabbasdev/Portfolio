@@ -1,8 +1,8 @@
-import { contact } from '@/data/contact'
-import { Container } from '@/components/ui/Container'
-import { SectionHeading } from '@/components/ui/SectionHeading'
-import { Divider } from '@/components/ui/Divider'
-import { ContactForm } from '@/components/Contact/ContactForm'
+import { contact } from "@/data/contact";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Divider } from "@/components/ui/Divider";
+import { ContactForm } from "@/components/Contact/ContactForm";
 
 export function Contact() {
   return (
@@ -17,5 +17,5 @@ export function Contact() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

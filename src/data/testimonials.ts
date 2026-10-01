@@ -1,9 +1,5 @@
 import type { Testimonial } from "@/types";
 
-// All four entries have real, confirmed quotes. TestimonialCarousel only
-// renders entries with a non-empty `quote`, so a new entry can still be
-// staged here with quote: '' until its text is ready - see
-// docs/CONTENT_MANAGEMENT.md.
 export const testimonials: Testimonial[] = [
   {
     id: "muhammad-dawood",

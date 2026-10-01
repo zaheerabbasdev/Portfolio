@@ -1,52 +1,51 @@
-import { useMemo, useRef, useState } from 'react'
-import type { KeyboardEvent, TouchEvent } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { projects } from '@/data/projects'
-import { ProjectCard } from '@/components/Projects/ProjectCard'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useMemo, useRef, useState } from "react";
+import type { KeyboardEvent, TouchEvent } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { projects } from "@/data/projects";
+import { ProjectCard } from "@/components/Projects/ProjectCard";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-const SWIPE_THRESHOLD = 40
+const SWIPE_THRESHOLD = 40;
 
-// Horizontal, data-driven carousel. `visibleCount` (1 on mobile, 3 on
-// desktop) and `projects.length` together decide how far the track can
-// travel, so 1, 2, 3 or 4+ projects all behave correctly with no special-casing.
 export function ProjectCarousel() {
-  const isDesktop = useMediaQuery('(min-width: 1024px)')
-  const visibleCount = isDesktop ? 3 : 1
-  const maxIndex = Math.max(0, projects.length - visibleCount)
-  const [index, setIndex] = useState(0)
-  const clampedIndex = Math.min(index, maxIndex)
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const visibleCount = isDesktop ? 3 : 1;
+  const maxIndex = Math.max(0, projects.length - visibleCount);
+  const [index, setIndex] = useState(0);
+  const clampedIndex = Math.min(index, maxIndex);
 
-  const touchStartX = useRef<number | null>(null)
+  const touchStartX = useRef<number | null>(null);
 
-  const canGoPrev = clampedIndex > 0
-  const canGoNext = clampedIndex < maxIndex
+  const canGoPrev = clampedIndex > 0;
+  const canGoNext = clampedIndex < maxIndex;
 
-  const goPrev = () => setIndex((current) => Math.max(0, current - 1))
-  const goNext = () => setIndex((current) => Math.min(maxIndex, current + 1))
+  const goPrev = () => setIndex((current) => Math.max(0, current - 1));
+  const goNext = () => setIndex((current) => Math.min(maxIndex, current + 1));
 
   const trackStyle = useMemo(
-    () => ({ transform: `translateX(-${clampedIndex * (100 / visibleCount)}%)` }),
+    () => ({
+      transform: `translateX(-${clampedIndex * (100 / visibleCount)}%)`,
+    }),
     [clampedIndex, visibleCount],
-  )
+  );
 
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'ArrowLeft') goPrev()
-    if (event.key === 'ArrowRight') goNext()
-  }
+    if (event.key === "ArrowLeft") goPrev();
+    if (event.key === "ArrowRight") goNext();
+  };
 
   const onTouchStart = (event: TouchEvent) => {
-    touchStartX.current = event.touches[0].clientX
-  }
+    touchStartX.current = event.touches[0].clientX;
+  };
 
   const onTouchEnd = (event: TouchEvent) => {
-    if (touchStartX.current === null) return
-    const delta = event.changedTouches[0].clientX - touchStartX.current
-    if (delta > SWIPE_THRESHOLD) goPrev()
-    if (delta < -SWIPE_THRESHOLD) goNext()
-    touchStartX.current = null
-  }
+    if (touchStartX.current === null) return;
+    const delta = event.changedTouches[0].clientX - touchStartX.current;
+    if (delta > SWIPE_THRESHOLD) goPrev();
+    if (delta < -SWIPE_THRESHOLD) goNext();
+    touchStartX.current = null;
+  };
 
   return (
     <div
@@ -60,7 +59,10 @@ export function ProjectCarousel() {
       className="relative"
     >
       <div className="overflow-hidden">
-        <div className="flex transition-transform duration-500 ease-out" style={trackStyle}>
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={trackStyle}
+        >
           {projects.map((project) => (
             <div
               key={project.id}
@@ -85,7 +87,8 @@ export function ProjectCarousel() {
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <span className="font-display text-xs font-semibold tracking-[0.2em] text-muted">
-            {String(clampedIndex + 1).padStart(2, '0')} / {String(maxIndex + 1).padStart(2, '0')}
+            {String(clampedIndex + 1).padStart(2, "0")} /{" "}
+            {String(maxIndex + 1).padStart(2, "0")}
           </span>
           <button
             type="button"
@@ -99,5 +102,5 @@ export function ProjectCarousel() {
         </div>
       )}
     </div>
-  )
+  );
 }

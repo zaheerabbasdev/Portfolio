@@ -1,26 +1,29 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { navLinks } from '@/components/Header/navLinks'
-import { Logo } from '@/components/Header/Logo'
-import { PillButton } from '@/components/ui/PillButton'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { navLinks } from "@/components/Header/navLinks";
+import { Logo } from "@/components/Header/Logo";
+import { PillButton } from "@/components/ui/PillButton";
 
 interface HeaderBarContentProps {
-  /** 'hero': logo adapts to the hero's own diagonal split (light on mobile, dark on the white desktop half).
-   *  'scroll': logo is always light, since the Scroll Header's background is always solid black. */
-  variant: 'hero' | 'scroll'
-  menuOpen: boolean
-  onOpenMenu: () => void
-  /** false while the Scroll Header is translated off-screen, so its links/button/hamburger
-   *  can't be tabbed into until it's actually visible. Always true for the Fancy Header. */
-  focusable?: boolean
+  variant: "hero" | "scroll";
+  menuOpen: boolean;
+  onOpenMenu: () => void;
+  focusable?: boolean;
 }
 
-export function HeaderBarContent({ variant, menuOpen, onOpenMenu, focusable = true }: HeaderBarContentProps) {
-  const tabIndex = focusable ? undefined : -1
+export function HeaderBarContent({
+  variant,
+  menuOpen,
+  onOpenMenu,
+  focusable = true,
+}: HeaderBarContentProps) {
+  const tabIndex = focusable ? undefined : -1;
 
   return (
     <div className="flex items-center justify-between px-6 py-3 text-cloud sm:px-10 lg:px-12">
-      <span className={variant === 'hero' ? 'text-cloud lg:text-ink' : 'text-cloud'}>
+      <span
+        className={variant === "hero" ? "text-cloud lg:text-ink" : "text-cloud"}
+      >
         <Logo tabIndex={tabIndex} />
       </span>
 
@@ -60,5 +63,5 @@ export function HeaderBarContent({ variant, menuOpen, onOpenMenu, focusable = tr
         <FontAwesomeIcon icon={faBars} className="text-xl" aria-hidden="true" />
       </button>
     </div>
-  )
+  );
 }

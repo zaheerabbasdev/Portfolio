@@ -1,12 +1,12 @@
-import { skills } from '@/data/skills'
-import { Container } from '@/components/ui/Container'
-import { SectionHeading } from '@/components/ui/SectionHeading'
-import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { skills } from "@/data/skills";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-// Skills render as category → name lists, no icons or proficiency bars.
-// Adding/removing a category in data/skills.ts needs no component changes.
 export function Skills() {
-  const revealRef = useScrollReveal<HTMLDivElement>({ itemSelector: '[data-reveal]' })
+  const revealRef = useScrollReveal<HTMLDivElement>({
+    itemSelector: "[data-reveal]",
+  });
 
   return (
     <section id="skills" className="bg-cloud py-24 sm:py-28">
@@ -14,7 +14,10 @@ export function Skills() {
         <div className="flex flex-col items-center gap-14">
           <SectionHeading heading="Skills" />
 
-          <div ref={revealRef} className="grid w-full max-w-4xl gap-12 sm:grid-cols-2">
+          <div
+            ref={revealRef}
+            className="grid w-full max-w-4xl gap-12 sm:grid-cols-2"
+          >
             {skills.map((group) => (
               <div key={group.category} data-reveal>
                 <h3 className="mb-4 font-display text-xs font-bold tracking-[0.25em] text-ink">
@@ -36,5 +39,5 @@ export function Skills() {
         </div>
       </Container>
     </section>
-  )
+  );
 }
