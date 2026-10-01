@@ -48,7 +48,7 @@ export function HeaderBarContent({
           tabIndex={tabIndex}
           className="bg-cloud text-ink hover:bg-white hover:text-ink"
         >
-          Contact me
+          CONTACT ME
         </PillButton>
       </div>
 
