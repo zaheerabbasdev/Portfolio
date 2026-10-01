@@ -13,7 +13,7 @@ visual identity; a diagonal split hero; a dual-mode (Email/WhatsApp) contact
 form; and a persistent navigation bar that takes over once the hero scrolls
 out of view.
 
-**Live:** [stackiid.github.io/zaheer-abbas-portfolio](https://stackiid.github.io/zaheer-abbas-portfolio/)
+**Live:** [zaheerabbasdev.github.io/Portfolio/](https://zaheerabbasdev.github.io/Portfolio/)
 
 ---
 
