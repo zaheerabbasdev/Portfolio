@@ -65,16 +65,16 @@ out of view.
 
 ## Tech Stack
 
-| Category         | Choice                                               |
-| ----------------- | ----------------------------------------------------- |
-| Framework         | [React 19](https://react.dev/)                        |
-| Language          | [TypeScript](https://www.typescriptlang.org/) (strict mode) |
-| Build tool        | [Vite 8](https://vite.dev/)                           |
-| Styling           | [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`) |
-| Animation         | [GSAP](https://gsap.com/)                             |
+| Category          | Choice                                                                         |
+| ----------------- | ------------------------------------------------------------------------------ |
+| Framework         | [React 19](https://react.dev/)                                                 |
+| Language          | [TypeScript](https://www.typescriptlang.org/) (strict mode)                    |
+| Build tool        | [Vite 8](https://vite.dev/)                                                    |
+| Styling           | [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`)              |
+| Animation         | [GSAP](https://gsap.com/)                                                      |
 | Icons             | [Font Awesome](https://fontawesome.com/) (`react-fontawesome`, solid + brands) |
-| Linting           | [oxlint](https://oxc.rs/docs/guide/usage/linter.html) |
-| Hosting (current) | GitHub Pages, via GitHub Actions                      |
+| Linting           | [oxlint](https://oxc.rs/docs/guide/usage/linter.html)                          |
+| Hosting (current) | GitHub Pages, via GitHub Actions                                               |
 
 No React framework (Next.js, Remix, etc.) is used; this is a client-rendered
 Vite SPA.
@@ -163,18 +163,18 @@ production build before deploying.
 
 ## Available Scripts
 
-| Script            | Command            | Description                                                  |
-| ------------------ | ------------------- | -------------------------------------------------------------- |
-| `npm run dev`      | `vite`              | Starts the dev server with HMR.                               |
-| `npm run build`    | `tsc -b && vite build` | Type-checks, then produces a production build in `dist/`. |
-| `npm run lint`     | `oxlint`            | Runs the oxlint static analyzer (including React Hooks rules). |
-| `npm run preview`  | `vite preview`      | Serves the built `dist/` output locally.                      |
+| Script            | Command                | Description                                                    |
+| ----------------- | ---------------------- | -------------------------------------------------------------- |
+| `npm run dev`     | `vite`                 | Starts the dev server with HMR.                                |
+| `npm run build`   | `tsc -b && vite build` | Type-checks, then produces a production build in `dist/`.      |
+| `npm run lint`    | `oxlint`               | Runs the oxlint static analyzer (including React Hooks rules). |
+| `npm run preview` | `vite preview`         | Serves the built `dist/` output locally.                       |
 
 ## Environment Variables
 
-| Variable          | Required | Purpose                                                                 |
-| ------------------ | :------: | -------------------------------------------------------------------------- |
-| `VITE_BASE_PATH`   | No       | Overrides Vite's `base` path. Set to `/<repo-name>/` when deploying to GitHub Pages under a project repo; left unset (defaults to `/`) for Netlify/Vercel or a custom domain at the root. |
+| Variable         | Required | Purpose                                                                                                                                                                                   |
+| ---------------- |:--------:| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_BASE_PATH` | No       | Overrides Vite's `base` path. Set to `/<repo-name>/` when deploying to GitHub Pages under a project repo; left unset (defaults to `/`) for Netlify/Vercel or a custom domain at the root. |
 
 No API keys, secrets, or tokens are required to run this project. The
 contact form's Formspree endpoint (see below) is a public form URL, not a
@@ -296,7 +296,7 @@ The repository ships a GitHub Actions workflow
 (`.github/workflows/deploy.yml`) that builds the site with
 `VITE_BASE_PATH=/<repo-name>/` and publishes `dist/` to GitHub Pages on every
 push to `main`. The current live deployment
-([stackiid.github.io/zaheer-abbas-portfolio](https://stackiid.github.io/zaheer-abbas-portfolio/))
+([zaheerabbasdev.github.io/Portfolio/](https://zaheerabbasdev.github.io/Portfolio/))
 uses this workflow.
 
 The project is a static Vite build with no server-side requirements, so it
@@ -335,13 +335,13 @@ Internet Explorer) has been performed, and none is targeted.
 
 ## Documentation
 
-| Document | Covers |
-| --- | --- |
-| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Folder structure, data flow, and component conventions. |
-| [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) | Color tokens, typography, shared UI primitives, motion conventions. |
+| Document                                                   | Covers                                                                                                     |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)             | Folder structure, data flow, and component conventions.                                                    |
+| [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md)           | Color tokens, typography, shared UI primitives, motion conventions.                                        |
 | [`docs/CONTENT_MANAGEMENT.md`](docs/CONTENT_MANAGEMENT.md) | How to edit every section's content, the contact form, resume, and SEO files, without touching components. |
-| [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | GitHub Pages / Netlify / Vercel deployment, custom domains, base-path handling. |
-| [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) | Local setup, path aliases, adding a new section, troubleshooting. |
+| [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)                 | GitHub Pages / Netlify / Vercel deployment, custom domains, base-path handling.                            |
+| [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md)               | Local setup, path aliases, adding a new section, troubleshooting.                                          |
 
 ## Future Improvements
 
